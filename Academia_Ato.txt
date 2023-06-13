@@ -57,8 +57,6 @@ IdHorario int primary key IDENTITY(1,1) NOT NULL,
 Dia varchar(500)NOT NULL,
 Tiempo varchar(500)NOT NULL,
 Hora varchar(500)NOT NULL,
-IdGrupo INT NOT NULL,
-FOREIGN KEY (IdGrupo) REFERENCES Grupo(IdGrupo),
 )
 
 
@@ -67,6 +65,7 @@ IdGrupo int primary key IDENTITY(1,1) NOT NULL,
 Descripcion varchar(100) NULL,
 IdHorario int NOT NULL,
 IdEstudiante INT NOT NULL,
+FOREIGN KEY (IdHorario) REFERENCES Grupo(IdHorario),
 FOREIGN KEY (IdEstudiante) REFERENCES Estudiantes(IdEstudiante),
 )
 
