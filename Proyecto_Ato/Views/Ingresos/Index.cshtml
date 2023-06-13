@@ -1,0 +1,119 @@
+﻿@model IEnumerable<Proyecto_Ato.Models.Ingresos>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row" style="display: inline-block;">
+    <div class="tile_count">
+        <div class="col-md-6 col-sm-4   tile_stats_count">
+            <span class="count_top"><i class="fa fa-user"></i> Total de Ingresos</span>
+
+            <div class="count">@Html.Action("ObtenerNumeroIngresos", "Ingresos")</div>
+
+            @Html.Action("ObtenerFechaUltimoIngreso", "Ingresos") Ultimo Ingreso
+
+
+
+        </div>
+
+        <div class="col-md-6 col-sm-6  tile_stats_count">
+            <span class="count_top"><i class="fa fa-user"></i> Total de Ingresos</span>
+            <div class="count green">@Html.Action("ObtenerTotalMontos", "Ingresos")</div>
+            <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i></i>Ingresos Netos</span>
+        </div>
+    </div>
+</div>
+
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class=" pull-right top_search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for..." />
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                    <a href="@Url.Action("Create", "Ingresos")" class=" float-right " style="padding-left: 20px;">
+                        <button class="cssbuttons-io-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="none" d="M0 0h24v24H0z"></path>
+                                <path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path>
+                            </svg>
+                            <span class="button-text-spacing">Agregar</span>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10">
+
+            @foreach (var item in Model)
+            {
+
+
+
+
+                <div class="col-sm-4">
+                    <div class="card">
+                        <div class="header">
+                            <div class="x_panel">
+                                <div>
+                                    <ul class="nav navbar-right panel_toolbox">
+                                        <li>
+                                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Edit", "Ingresos", new {id = item.IdIngreso })"><i class="fa fa-wrench"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Delete", "Ingresos", new {id = item.IdIngreso })"><i class="fa fa-trash"></i></a>
+                                        </li>
+                                    </ul>
+                                    <a class="title" href="#">
+                                        @Html.DisplayFor(modelItem => item.CategoriaIngresos.Descripcion)
+                                    </a>
+                                    <dt style="color: green;">$ @Html.DisplayFor(modelItem => item.Monto)</dt>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="x_content">
+                                    <div id="graph_bar">
+
+                                        <p class="description"></p>
+                                        <dt class="dt">Descripcion del ingreso: </dt>
+                                        @Html.DisplayFor(modelItem => item.Descripcion)
+                                        <dl class="post-info">
+                                            <div class="cr">
+                                                <dt class="dt">@Html.DisplayFor(modelItem => item.FechaIngreso)</dt>
+                                                <?xml version="1.0" encoding="UTF-8" ?>
+                                                <svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M15 4V2m0 2v2m0-2h-4.5M3 10v9a2 2 0 002 2h14a2 2 0 002-2v-9H3zM3 10V6a2 2 0 012-2h2M7 2v4M21 10V6a2 2 0 00-2-2h-.5" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                                            </div>
+                                            <div class="cr">
+                                                <dt class="dt">$ @Html.DisplayFor(modelItem => item.Monto)</dt>
+                                                <?xml version="1.0" encoding="UTF-8" ?>
+                                                <svg width="24px" height="24px" viewBox="0 0 24 24" stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M2 11l2.807-3.157A4 4 0 017.797 6.5H8M2 19.5h5.5l4-3s.81-.547 2-1.5c2.5-2 0-5.166-2.5-3.5C8.964 12.857 7 14 7 14" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8 13.5V7a2 2 0 012-2h10a2 2 0 012 2v6a2 2 0 01-2 2h-6.5" stroke="#000000" stroke-width="1.5"></path><path d="M15 12a2 2 0 110-4 2 2 0 010 4zM19.5 10.01l.01-.011M10.5 10.01l.01-.011" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                                            </div>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+        </div>
+
+
+    </div>
+</div>

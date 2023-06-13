@@ -1,0 +1,58 @@
+﻿@model Proyecto_Ato.Models.Personal
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Personal</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrimerApellido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrimerApellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SegundoApellido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SegundoApellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cedula)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cedula)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUsers.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUsers.Email)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdPersonal }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

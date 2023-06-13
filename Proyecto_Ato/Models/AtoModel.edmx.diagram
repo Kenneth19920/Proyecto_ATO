@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ab46461da1c54e06bbc7e8da33f613a1" Name="Diagram1" ZoomLevel="101">
+        <EntityTypeShape EntityType="Academia_AtoModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Academia_AtoModel.AspNetUserClaims" Width="1.5" PointX="3.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Academia_AtoModel.AspNetUserLogins" Width="1.5" PointX="4.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Academia_AtoModel.AspNetUsers" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Academia_AtoModel.CategoriaGastos" Width="1.5" PointX="10.625" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Academia_AtoModel.CategoriaIngresos" Width="1.5" PointX="5.375" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Academia_AtoModel.Estudiantes" Width="1.5" PointX="5.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Academia_AtoModel.Gastos" Width="1.5" PointX="13" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Academia_AtoModel.Ingresos" Width="1.5" PointX="5.375" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Academia_AtoModel.Personal" Width="1.5" PointX="2.75" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Academia_AtoModel.Recordatorios" Width="1.5" PointX="0.5" PointY="15.875" IsExpanded="true" />
+        <AssociationConnector Association="Academia_AtoModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="Academia_AtoModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="Academia_AtoModel.FK__Estudiant__IdUsu__17036CC0" ManuallyRouted="false" />
+        <AssociationConnector Association="Academia_AtoModel.FK__Gastos__IdUsuari__43D61337" ManuallyRouted="false" />
+        <AssociationConnector Association="Academia_AtoModel.FK__Ingresos__IdUsua__4C6B5938" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="Academia_AtoModel.FK__Personal__IdUsua__208CD6FA" ManuallyRouted="false" />
+        <AssociationConnector Association="Academia_AtoModel.FK__Recordato__IdUsu__236943A5" ManuallyRouted="true" >
+          <ConnectorPoint PointX="3.0624975" PointY="13.826396484375" />
+          <ConnectorPoint PointX="3.0624975" PointY="14.153284719726562" />
+          <ConnectorPoint PointX="2.3840733986771108" PointY="14.153284719726562" />
+          <ConnectorPoint PointX="2.3840733986771108" PointY="16.828125" />
+          <ConnectorPoint PointX="2" PointY="16.828125" />
+        </AssociationConnector>
+        <AssociationConnector Association="Academia_AtoModel.FK__Gastos__IdCatego__44CA3770" ManuallyRouted="false" />
+        <AssociationConnector Association="Academia_AtoModel.FK__Ingresos__IdCate__4D5F7D71" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Academia_AtoModel.AspNetUserRoles" Width="1.5" PointX="5.25" PointY="2.375" />
+        <AssociationConnector Association="Academia_AtoModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" />
+        <EntityTypeShape EntityType="Academia_AtoModel.Grupo" Width="1.5" PointX="10.125" PointY="8.75" />
+        <EntityTypeShape EntityType="Academia_AtoModel.Horario" Width="1.5" PointX="9.875" PointY="12.5" />
+        <AssociationConnector Association="Academia_AtoModel.FK__Grupo__IdEstudia__65370702" />
+        <AssociationConnector Association="Academia_AtoModel.FK__Grupo__IdHorario__6442E2C9" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

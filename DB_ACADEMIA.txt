@@ -1,0 +1,92 @@
+CREATE TABLE CategoriaIngresos(
+IdCategoria int primary key IDENTITY(1,1)NOT NULL,
+Descripcion varchar(100) NOT NULL,
+FechaCreacion datetime default getdate() NOT NULL,
+)
+
+CREATE TABLE Ingresos (
+    IdIngreso INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+    IdUsuario NVARCHAR(128) NOT NULL,
+    IdCategoria INT NOT NULL,
+    Descripcion NVARCHAR(MAX) NOT NULL,
+    Monto DECIMAL(18, 2) default 0 NOT NULL,
+    FechaIngreso datetime default getdate()NOT NULL,
+    FOREIGN KEY (IdUsuario) REFERENCES AspNetUsers(id),
+    FOREIGN KEY (IdCategoria) REFERENCES CategoriaIngresos(IdCategoria)
+);
+
+CREATE TABLE CategoriaGastos(
+IdCategoria int primary key IDENTITY(1,1) NOT NULL,
+Descripcion varchar NOT NULL,
+FechaCreacion datetime default getdate()NOT NULL,
+)
+
+CREATE TABLE Gastos (
+    IdGastos INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+    IdUsuario NVARCHAR(128) NOT NULL,
+    IdCategoria INT NOT NULL,
+    Descripcion NVARCHAR(MAX) NOT NULL,
+    Monto DECIMAL(18, 2) default 0 NOT NULL,
+    FechaIngreso datetime default getdate() NOT NULL,
+    FOREIGN KEY (IdUsuario) REFERENCES AspNetUsers(id),
+    FOREIGN KEY (IdCategoria) REFERENCES CategoriaGastos(IdCategoria)
+);
+
+CREATE TABLE Recordatorios (
+  IdRecordatorio INT NOT NULL IDENTITY(1,1),
+  IdUsuario nvarchar(128) NOT NULL,
+  Descripcion TEXT NOT NULL, 
+  Fecha DATETIME NOT NULL,
+  PRIMARY KEY (IdRecordatorio),
+  FOREIGN KEY (IdUsuario) REFERENCES AspNetUsers(id) ON DELETE CASCADE
+);
+
+CREATE TABLE Personal (
+IdPersonal int primary key IDENTITY(1,1) NOT NULL,
+IdUsuario NVARCHAR(128)NOT NULL,
+Nombre varchar(100)NOT NULL,
+PrimerApellido varchar(100)NOT NULL,
+SegundoApellido varchar(100)NOT NULL,
+Cedula int UNIQUE NOT NULL,
+FOREIGN KEY (IdUsuario) REFERENCES AspNetUsers(id),
+)
+
+
+CREATE TABLE Horario(
+IdHorario int primary key IDENTITY(1,1) NOT NULL,
+Dia varchar(500)NOT NULL,
+Tiempo varchar(500)NOT NULL,
+Hora varchar(500)NOT NULL,
+IdGrupo INT NOT NULL,
+FOREIGN KEY (IdGrupo) REFERENCES Grupo(IdGrupo),
+)
+
+
+CREATE TABLE Grupo(
+IdGrupo int primary key IDENTITY(1,1) NOT NULL,
+Descripcion varchar(100) NULL,
+IdHorario int NOT NULL,
+IdEstudiante INT NOT NULL,
+FOREIGN KEY (IdEstudiante) REFERENCES Estudiantes(IdEstudiante),
+)
+
+
+CREATE TABLE Estudiantes (
+IdEstudiante int primary key IDENTITY(1,1) NOT NULL,
+IdUsuario NVARCHAR(128) NOT NULL,
+Nombre varchar(100)NOT NULL,
+PrimerApellido varchar(100) NOT NULL,
+SegundoApellido varchar(100) NULL,
+Cedula varchar(35) NOT NULL,
+FechaNacimiento datetime default getdate()NOT NULL,
+Edad int NOT NULL,
+Genero varchar(10) NOT NULL,
+Peso decimal(10,2) NOT NULL,
+Altura decimal(10,2) NOT NULL,
+Direccion varchar(100)NOT NULL,
+Telefono varchar(35) NOT NULL,
+Correo Varchar(250) NOT NULL,
+HistorialMedico varchar(250) NOT NULL,
+FOREIGN KEY (IdUsuario) REFERENCES AspNetUsers(id)
+);
+

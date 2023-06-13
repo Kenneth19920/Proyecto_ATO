@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Academia_AtoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="Estudiantes" Relationship="Self.FK__Estudiant__IdUsu__17036CC0" FromRole="AspNetUsers" ToRole="Estudiantes" />
+    <NavigationProperty Name="Gastos" Relationship="Self.FK__Gastos__IdUsuari__43D61337" FromRole="AspNetUsers" ToRole="Gastos" />
+    <NavigationProperty Name="Ingresos" Relationship="Self.FK__Ingresos__IdUsua__4C6B5938" FromRole="AspNetUsers" ToRole="Ingresos" />
+    <NavigationProperty Name="Personal" Relationship="Self.FK__Personal__IdUsua__208CD6FA" FromRole="AspNetUsers" ToRole="Personal" />
+    <NavigationProperty Name="Recordatorios" Relationship="Self.FK__Recordato__IdUsu__236943A5" FromRole="AspNetUsers" ToRole="Recordatorios" />
+    <NavigationProperty Name="AspNetUserRoles" Relationship="Academia_AtoModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserRoles" />
+  </EntityType>
+  <EntityType Name="CategoriaGastos">
+    <Key>
+      <PropertyRef Name="IdCategoria" />
+    </Key>
+    <Property Name="IdCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Gastos" Relationship="Self.FK__Gastos__IdCatego__44CA3770" FromRole="CategoriaGastos" ToRole="Gastos" />
+  </EntityType>
+  <EntityType Name="CategoriaIngresos">
+    <Key>
+      <PropertyRef Name="IdCategoria" />
+    </Key>
+    <Property Name="IdCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Ingresos" Relationship="Self.FK__Ingresos__IdCate__4D5F7D71" FromRole="CategoriaIngresos" ToRole="Ingresos" />
+  </EntityType>
+  <EntityType Name="Estudiantes">
+    <Key>
+      <PropertyRef Name="IdEstudiante" />
+    </Key>
+    <Property Name="IdEstudiante" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUsuario" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PrimerApellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SegundoApellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Cedula" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FechaNacimiento" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Edad" Type="Int32" Nullable="false" />
+    <Property Name="Genero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Peso" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Altura" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telefono" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Correo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="HistorialMedico" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__Estudiant__IdUsu__17036CC0" FromRole="Estudiantes" ToRole="AspNetUsers" />
+    <NavigationProperty Name="Grupo" Relationship="Academia_AtoModel.FK__Grupo__IdEstudia__65370702" FromRole="Estudiantes" ToRole="Grupo" />
+  </EntityType>
+  <EntityType Name="Gastos">
+    <Key>
+      <PropertyRef Name="IdGastos" />
+    </Key>
+    <Property Name="IdGastos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUsuario" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IdCategoria" Type="Int32" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Monto" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="FechaIngreso" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__Gastos__IdUsuari__43D61337" FromRole="Gastos" ToRole="AspNetUsers" />
+    <NavigationProperty Name="CategoriaGastos" Relationship="Self.FK__Gastos__IdCatego__44CA3770" FromRole="Gastos" ToRole="CategoriaGastos" />
+  </EntityType>
+  <EntityType Name="Ingresos">
+    <Key>
+      <PropertyRef Name="IdIngreso" />
+    </Key>
+    <Property Name="IdIngreso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUsuario" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IdCategoria" Type="Int32" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Monto" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="FechaIngreso" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__Ingresos__IdUsua__4C6B5938" FromRole="Ingresos" ToRole="AspNetUsers" />
+    <NavigationProperty Name="CategoriaIngresos" Relationship="Self.FK__Ingresos__IdCate__4D5F7D71" FromRole="Ingresos" ToRole="CategoriaIngresos" />
+  </EntityType>
+  <EntityType Name="Personal">
+    <Key>
+      <PropertyRef Name="IdPersonal" />
+    </Key>
+    <Property Name="IdPersonal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUsuario" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PrimerApellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SegundoApellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Cedula" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__Personal__IdUsua__208CD6FA" FromRole="Personal" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="Recordatorios">
+    <Key>
+      <PropertyRef Name="IdRecordatorio" />
+    </Key>
+    <Property Name="IdRecordatorio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUsuario" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__Recordato__IdUsu__236943A5" FromRole="Recordatorios" ToRole="AspNetUsers" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Estudiant__IdUsu__17036CC0">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="Estudiantes" Type="Self.Estudiantes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Estudiantes">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Gastos__IdUsuari__43D61337">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="Gastos" Type="Self.Gastos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Gastos">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ingresos__IdUsua__4C6B5938">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="Ingresos" Type="Self.Ingresos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ingresos">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Personal__IdUsua__208CD6FA">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="Personal" Type="Self.Personal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Personal">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Recordato__IdUsu__236943A5">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Recordatorios" Type="Self.Recordatorios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Recordatorios">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Gastos__IdCatego__44CA3770">
+    <End Role="CategoriaGastos" Type="Self.CategoriaGastos" Multiplicity="1" />
+    <End Role="Gastos" Type="Self.Gastos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CategoriaGastos">
+        <PropertyRef Name="IdCategoria" />
+      </Principal>
+      <Dependent Role="Gastos">
+        <PropertyRef Name="IdCategoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ingresos__IdCate__4D5F7D71">
+    <End Role="CategoriaIngresos" Type="Self.CategoriaIngresos" Multiplicity="1" />
+    <End Role="Ingresos" Type="Self.Ingresos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CategoriaIngresos">
+        <PropertyRef Name="IdCategoria" />
+      </Principal>
+      <Dependent Role="Ingresos">
+        <PropertyRef Name="IdCategoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Academia_AtoEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+    <EntitySet Name="CategoriaGastos" EntityType="Self.CategoriaGastos" />
+    <EntitySet Name="CategoriaIngresos" EntityType="Self.CategoriaIngresos" />
+    <EntitySet Name="Estudiantes" EntityType="Self.Estudiantes" />
+    <EntitySet Name="Gastos" EntityType="Self.Gastos" />
+    <EntitySet Name="Ingresos" EntityType="Self.Ingresos" />
+    <EntitySet Name="Personal" EntityType="Self.Personal" />
+    <EntitySet Name="Recordatorios" EntityType="Self.Recordatorios" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Estudiant__IdUsu__17036CC0" Association="Self.FK__Estudiant__IdUsu__17036CC0">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Estudiantes" EntitySet="Estudiantes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Gastos__IdUsuari__43D61337" Association="Self.FK__Gastos__IdUsuari__43D61337">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Gastos" EntitySet="Gastos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ingresos__IdUsua__4C6B5938" Association="Self.FK__Ingresos__IdUsua__4C6B5938">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Ingresos" EntitySet="Ingresos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Personal__IdUsua__208CD6FA" Association="Self.FK__Personal__IdUsua__208CD6FA">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Personal" EntitySet="Personal" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Recordato__IdUsu__236943A5" Association="Self.FK__Recordato__IdUsu__236943A5">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Recordatorios" EntitySet="Recordatorios" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Gastos__IdCatego__44CA3770" Association="Self.FK__Gastos__IdCatego__44CA3770">
+      <End Role="CategoriaGastos" EntitySet="CategoriaGastos" />
+      <End Role="Gastos" EntitySet="Gastos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ingresos__IdCate__4D5F7D71" Association="Self.FK__Ingresos__IdCate__4D5F7D71">
+      <End Role="CategoriaIngresos" EntitySet="CategoriaIngresos" />
+      <End Role="Ingresos" EntitySet="Ingresos" />
+    </AssociationSet>
+    <EntitySet Name="AspNetUserRoles" EntityType="Academia_AtoModel.AspNetUserRoles" />
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Academia_AtoModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <EntitySet Name="Grupo" EntityType="Academia_AtoModel.Grupo" />
+    <EntitySet Name="Horario" EntityType="Academia_AtoModel.Horario" />
+    <AssociationSet Name="FK__Grupo__IdEstudia__65370702" Association="Academia_AtoModel.FK__Grupo__IdEstudia__65370702">
+      <End Role="Estudiantes" EntitySet="Estudiantes" />
+      <End Role="Grupo" EntitySet="Grupo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Grupo__IdHorario__6442E2C9" Association="Academia_AtoModel.FK__Grupo__IdHorario__6442E2C9">
+      <End Role="Horario" EntitySet="Horario" />
+      <End Role="Grupo" EntitySet="Grupo" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="RoleId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Academia_AtoModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" FromRole="AspNetUserRoles" ToRole="AspNetUsers" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+    <End Type="Academia_AtoModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Academia_AtoModel.AspNetUserRoles" Role="AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Grupo">
+    <Key>
+      <PropertyRef Name="IdGrupo" />
+    </Key>
+    <Property Name="IdGrupo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IdHorario" Type="Int32" Nullable="false" />
+    <Property Name="IdEstudiante" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Estudiantes" Relationship="Academia_AtoModel.FK__Grupo__IdEstudia__65370702" FromRole="Grupo" ToRole="Estudiantes" />
+    <NavigationProperty Name="Horario" Relationship="Academia_AtoModel.FK__Grupo__IdHorario__6442E2C9" FromRole="Grupo" ToRole="Horario" />
+  </EntityType>
+  <EntityType Name="Horario">
+    <Key>
+      <PropertyRef Name="IdHorario" />
+    </Key>
+    <Property Name="IdHorario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Dia" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Tiempo" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Hora" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Grupo" Relationship="Academia_AtoModel.FK__Grupo__IdHorario__6442E2C9" FromRole="Horario" ToRole="Grupo" />
+  </EntityType>
+  <Association Name="FK__Grupo__IdEstudia__65370702">
+    <End Type="Academia_AtoModel.Estudiantes" Role="Estudiantes" Multiplicity="1" />
+    <End Type="Academia_AtoModel.Grupo" Role="Grupo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estudiantes">
+        <PropertyRef Name="IdEstudiante" />
+      </Principal>
+      <Dependent Role="Grupo">
+        <PropertyRef Name="IdEstudiante" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Grupo__IdHorario__6442E2C9">
+    <End Type="Academia_AtoModel.Horario" Role="Horario" Multiplicity="1" />
+    <End Type="Academia_AtoModel.Grupo" Role="Grupo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Horario">
+        <PropertyRef Name="IdHorario" />
+      </Principal>
+      <Dependent Role="Grupo">
+        <PropertyRef Name="IdHorario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

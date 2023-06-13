@@ -1,0 +1,86 @@
+﻿@using Proyecto_Ato.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/Login_Layout.cshtml";
+}
+
+<body class="login">
+    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+
+
+    <div>
+        <a class="hiddenanchor" id="signup"></a>
+        <a class="hiddenanchor" id="signin"></a>
+      
+
+        <div class="login_wrapper">
+
+            <div class="animate form login_form">
+
+                <section class="login_content">
+                    <form>
+
+                        <h1>Inicio de Sesión</h1>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div>
+                            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        </div>
+                        <div>
+
+                            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+
+                        </div>
+                        <br />
+                        <input type="submit" value="Log in" class="btn btn-default submit" />
+                        <br />
+                        <br />
+
+
+                        <div class="checkbox">
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            @Html.LabelFor(m => m.RememberMe)
+                        </div>
+
+                        @Html.ActionLink("¿Perdió su contraseña?", "ForgotPassword", null, new { @class = "forgot-password-link" })
+
+
+                        <div class="clearfix"></div>
+
+                        <div class="separator">
+                            <p class="change_link">
+                                ¿Aún sin registrarse?
+
+                                @Html.ActionLink("Crear Cuenta", "Register")
+                            </p>
+
+                            <div class="clearfix"></div>
+                            <br />
+
+                            <div>
+                                <h1><i class="fa fa-paw"></i>ATO</h1>
+                                <p>TODOS LOS DERECHOS RESERVADOS, Academia Ato. 2023.</p>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+
+        </div>
+    </div>
+
+    }
+
+</body>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
