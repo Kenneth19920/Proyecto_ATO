@@ -4,7 +4,6 @@
     ViewBag.Title = "Edit";
 }
 
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -28,6 +27,7 @@
             <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
 
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.IdEstudiante)
 
                 <div class="item form-group">
                     @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "col-form-label col-md-3 col-sm-3 label-align" })

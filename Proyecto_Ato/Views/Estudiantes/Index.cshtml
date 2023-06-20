@@ -5,24 +5,29 @@
     int index = 0;
 }
 
+
+
+
+
 <div class="row" style="display: inline-block;">
     <div class="tile_count">
-        <div class="col-md-6 col-sm-4   tile_stats_count">
-            <span class="count_top"><i class="fa fa-user"></i> Total de Gastos</span>
-
-            <div class="count">@Html.Action("ObtenerNumeroIngresos", "Ingresos")</div>
-
-            @Html.Action("ObtenerFechaUltimoIngreso", "Ingresos") Ultimo Gasto
-
-
-
+        <div class="col-md-4 col-sm-4  tile_stats_count">
+            <span class="count_top"><i class="fa fa-user"></i> Total de Estudiantes</span>
+            <div class="count">@Html.Action("ObtenerNumeroEstudiantes", "Estudiantes")</div>
+            <span class="count_bottom"><i class="green">100% </i> Registrados</span>
+        </div>
+        <div class="col-md-4 col-sm-4  tile_stats_count">
+            <span class="count_top"><i class="fa fa-birthday-cake"></i> Proximo Cumpleaños</span>
+            <div class="count green">@Html.Action("ObtenerDiasParaProximoCumpleaños", "Estudiantes")</div>
+            <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i></i>Días Faltantes</span>
         </div>
 
-        <div class="col-md-6 col-sm-6  tile_stats_count">
-            <span class="count_top"><i class="fa fa-user"></i> Total de Gastos</span>
-            <div class="count green">@Html.Action("ObtenerTotalMontos", "Ingresos")</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i></i>Gastos Netos</span>
+        <div class="col-md-4 col-sm-4  tile_stats_count">
+            <span class="count_top"><i class="fa fa-bullhorn"></i> Nombre del Cumpleañero</span>
+            <div class="count">@Html.Action("ObtenerNombreProximoCumpleañeros", "Estudiantes")</div>
         </div>
+
+
     </div>
 </div>
 
@@ -32,7 +37,8 @@
         <div class="col">
             <div class=" pull-right top_search">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for..." />
+                    <input id="searchInput" type="text" class="form-control" placeholder="Buscar..." />
+
                     <span class="input-group-btn">
                         <button class="btn btn-default" type="button">Go!</button>
                     </span>
@@ -55,21 +61,13 @@
 <div class="col-md-12 col-sm-12 ">
     <div class="x_panel">
         <div class="x_title">
-            <h2>KeyTable example <small>Users</small></h2>
+            <h2>Tabla de Estudiantes</h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li>
                     <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Settings 1</a>
-                        <a class="dropdown-item" href="#">Settings 2</a>
-                    </div>
-                </li>
-                <li>
-                    <a class="close-link"><i class="fa fa-close"></i></a>
-                </li>
+              
+              
             </ul>
             <div class="clearfix"></div>
         </div>
@@ -77,48 +75,45 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card-box table-responsive">
-                        <p class="text-muted font-13 m-b-30">
-                            KeyTable provides Excel like cell navigation on any table. Events (focus, blur, action etc) can be assigned to individual cells, columns, rows or all cells.
-                        </p>
                         <div id="datatable-keytable_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap no-footer">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="dataTables_length" id="datatable-keytable_length">
                                         <label>
-                                            Show <select name="datatable-keytable_length" aria-controls="datatable-keytable" class="form-control input-sm">
+                                            Ver <select name="datatable-keytable_length" aria-controls="datatable-keytable" class="form-control input-sm">
                                                 <option value="10">10</option>
                                                 <option value="25">25</option>
                                                 <option value="50">50</option>
                                                 <option value="100">100</option>
-                                            </select> entries
+                                            </select>
                                         </label>
                                     </div>
                                 </div>
+
                                 <div class="col-sm-6">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <div style="position: absolute; height: 1px; width: 0px; overflow: hidden;"><input type="text" tabindex="0"></div><table id="datatable-keytable" class="table table-striped table-bordered dataTable no-footer" style="width: 100%; position: relative;" role="grid" aria-describedby="datatable-keytable_info">
+                                    <div style="position: absolute; height: 1px; width: 0px; overflow: hidden;">
+                                        <input type="text" tabindex="0">
+                                    </div>
+                                    <table id="datatable-keytable" class="table table-striped table-bordered dataTable no-footer" style="width: 100%; position: relative;" role="grid" aria-describedby="datatable-keytable_info">
                                         <thead>
                                             <tr role="row">
-                                                <th class="sorting_asc" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 149px;">@Html.DisplayNameFor(model => model.Nombre)</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 234px;">@Html.DisplayNameFor(model => model.PrimerApellido)</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 113px;">@Html.DisplayNameFor(model => model.SegundoApellido)</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 55px;">@Html.DisplayNameFor(model => model.Cedula)</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 106px;">@Html.DisplayNameFor(model => model.FechaNacimiento)</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 87px;">@Html.DisplayNameFor(model => model.Edad)</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 87px;">@Html.DisplayNameFor(model => model.Genero)</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 87px;">@Html.DisplayNameFor(model => model.Peso)</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 87px;">@Html.DisplayNameFor(model => model.Altura)</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 87px;">@Html.DisplayNameFor(model => model.Direccion)</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 87px;">@Html.DisplayNameFor(model => model.Telefono)</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 87px;">@Html.DisplayNameFor(model => model.Correo)</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 87px;">@Html.DisplayNameFor(model => model.HistorialMedico)</th>
+                                                <th>@Html.DisplayNameFor(model => model.Nombre)</th>
+                                                <th>@Html.DisplayNameFor(model => model.PrimerApellido)</th>
+                                                <th>@Html.DisplayNameFor(model => model.Cedula)</th>
+                                                <th>@Html.DisplayNameFor(model => model.FechaNacimiento)</th>
+                                                <th>@Html.DisplayNameFor(model => model.Edad)</th>
+                                                <th>@Html.DisplayNameFor(model => model.Peso)</th>
+                                                <th>@Html.DisplayNameFor(model => model.Telefono)</th>
+
 
                                             </tr>
                                         </thead>
                                         <tbody>
+
 
                                             @foreach (var item in Model)
                                             {
@@ -127,23 +122,26 @@
                                                 <tr role="row" class="rowClass">
                                                     <td class="sorting_1">@Html.DisplayFor(modelItem => item.Nombre)</td>
                                                     <td>@Html.DisplayFor(modelItem => item.PrimerApellido)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.SegundoApellido)</td>
+
                                                     <td>@Html.DisplayFor(modelItem => item.Cedula)</td>
                                                     <td>@Html.DisplayFor(modelItem => item.FechaNacimiento)</td>
                                                     <td>@Html.DisplayFor(modelItem => item.Edad)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.Genero)</td>
                                                     <td>@Html.DisplayFor(modelItem => item.Peso)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.Altura)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.Direccion)</td>
                                                     <td>@Html.DisplayFor(modelItem => item.Telefono)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.Correo)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.HistorialMedico)</td>
+
 
                                                     <td>
-                                                        @Html.ActionLink("Edit", "Edit", new { id = item.IdEstudiante }) |
-                                                        @Html.ActionLink("Details", "Details", new { id = item.IdEstudiante }) |
-                                                        @Html.ActionLink("Delete", "Delete", new { id = item.IdEstudiante })
+
+                                                        <a href="@Url.Action("Edit", new { id = item.IdEstudiante })" class="btn btn-primary"><i class="fa fa-pencil"></i> Editar </a>
+                                                        <a href="@Url.Action("Details", new { id = item.IdEstudiante })" class="btn btn-info"><i class="fa fa-info-circle"></i> Detalle </a>
+                                                        <button class="btn btn-info" onclick="openModal(@item.IdEstudiante)">Detalle</button>
+
+
+                                                        <a href="@Url.Action("Delete", new { id = item.IdEstudiante })" class="btn btn-danger"><i class="fa fa-trash-o"></i> Eliminar </a>
+
                                                     </td>
+
+
                                                 </tr>
 
 
@@ -156,6 +154,12 @@
                                     </table>
                                 </div>
                             </div>
+
+
+
+
+
+
                             <div class="row">
                                 <div class="col-sm-5">
                                     <div class="dataTables_info" id="datatable-keytable_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
@@ -197,3 +201,26 @@
         </div>
     </div>
 </div>
+
+
+@section scripts {
+    <script>
+        function openModal(estudianteId) {
+            $.ajax({
+                url: '@Url.Action("GetEstudianteDetails", "Estudiantes")',
+                type: 'GET',
+                data: { id: estudianteId },
+                success: function (data) {
+                    // Actualiza el contenido del modal con los detalles del estudiante
+                    $('.modal-body').html(data);
+                    // Abre el modal
+                    $('#myModal').modal('show');
+                },
+                error: function (xhr, status, error) {
+                    alert('Error al obtener los detalles del estudiante.');
+                }
+            });
+        }
+    </script>
+}
+

@@ -25,20 +25,21 @@ namespace Proyecto_Ato.Controllers
             int count = db.Ingresos.Count();
             return count > 0 ? count : 0;
         }
-        public DateTime ObtenerFechaUltimoIngreso()
+        public string ObtenerFechaUltimoIngreso()
         {
             var user = db.AspNetUsers.SingleOrDefault(u => u.UserName == User.Identity.Name);
             DateTime? ultimaFecha = db.Ingresos.OrderByDescending(i => i.FechaIngreso).Select(i => i.FechaIngreso).FirstOrDefault();
-            return ultimaFecha ?? DateTime.MinValue;
+            return ultimaFecha.HasValue ? ultimaFecha.Value.ToString("dd/MM/yyyy") : string.Empty;
         }
 
-        public decimal ObtenerTotalMontos()
+
+        public string ObtenerTotalMontos()
         {
             var user = db.AspNetUsers.SingleOrDefault(u => u.UserName == User.Identity.Name);
             decimal sumaMontos = db.Ingresos.Select(i => i.Monto).DefaultIfEmpty(0).Sum();
-            return sumaMontos;
-
+            return string.Format("{0:N}", sumaMontos);
         }
+
 
         // GET: Ingresos
         public ActionResult Index()
@@ -48,20 +49,6 @@ namespace Proyecto_Ato.Controllers
             return View(ingresos.ToList());
         }
 
-        // GET: Ingresos/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Ingresos ingresos = db.Ingresos.Find(id);
-            if (ingresos == null)
-            {
-                return HttpNotFound();
-            }
-            return View(ingresos);
-        }
 
         // GET: Ingresos/Create
         public ActionResult Create()

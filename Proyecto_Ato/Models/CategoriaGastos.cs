@@ -14,23 +14,31 @@ namespace Proyecto_Ato.Models
 
 using System;
     using System.Collections.Generic;
-    
-public partial class CategoriaGastos
-{
+    using System.ComponentModel.DataAnnotations;
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public CategoriaGastos()
+    public partial class CategoriaGastos
     {
 
-        this.Gastos = new HashSet<Gastos>();
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CategoriaGastos()
+        {
 
-    }
+            this.Gastos = new HashSet<Gastos>();
 
+        }
 
+    [Required]
+    [Display(Name = "Categoría del Gasto")]
     public int IdCategoria { get; set; }
 
+    [Required(ErrorMessage = "El campo Nombre es Descripción.")]
+    [Display(Name = "Descripción")]
+    [StringLength(150, MinimumLength = 2, ErrorMessage = "El campo Descripción  debe tener entre 2 y 150 caracteres.")]
     public string Descripcion { get; set; }
-
+    
+    [Required(ErrorMessage = "El campo Fecha de Fecha es obligatorio.")]
+    [Display(Name = "Fecha de Nacimiento")]
+    [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
     public System.DateTime FechaCreacion { get; set; }
 
 

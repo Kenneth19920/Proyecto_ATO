@@ -1,0 +1,27 @@
+﻿@model Proyecto_Ato.Models.Estudiantes
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Detalles del Estudiante</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <dl class="dl-horizontal">
+                <dt>Nombre</dt>
+                <dd>@Model.Nombre</dd>
+                <dt>Primer Apellido</dt>
+                <dd>@Model.PrimerApellido</dd>
+                <!-- Agrega aquí los demás detalles del estudiante -->
+            </dl>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary">Guardar cambios</button>
+        </div>
+    </div>
+</div>

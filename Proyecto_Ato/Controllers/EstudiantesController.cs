@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using Proyecto_Ato.Models;
 
@@ -14,6 +15,86 @@ namespace Proyecto_Ato.Controllers
     public class EstudiantesController : Controller
     {
         private Academia_AtoEntities db = new Academia_AtoEntities();
+
+        public int ObtenerNumeroEstudiantes()
+        {
+            var user = db.AspNetUsers.SingleOrDefault(u => u.UserName == User.Identity.Name);
+            int count = db.Estudiantes.Count();
+            return count > 0 ? count : 0;
+        }
+        public int ObtenerDiasParaProximoCumpleaños()
+        {
+            // Obtén el usuario actual
+            var user = db.AspNetUsers.SingleOrDefault(u => u.UserName == User.Identity.Name);
+
+            // Obtiene la fecha actual
+            DateTime fechaActual = DateTime.Today;
+
+            // Consulta la base de datos para obtener el próximo cumpleaños
+            var proximoCumpleaños = db.Estudiantes
+                .Where(e => e.FechaNacimiento.Month >= fechaActual.Month && e.FechaNacimiento.Day >= fechaActual.Day)
+                .OrderBy(e => e.FechaNacimiento)
+                .FirstOrDefault();
+
+            if (proximoCumpleaños != null)
+            {
+                // Calcula la fecha del próximo cumpleaños en el año actual
+                DateTime proximoCumpleañosEsteAño = new DateTime(fechaActual.Year, proximoCumpleaños.FechaNacimiento.Month, proximoCumpleaños.FechaNacimiento.Day);
+
+                // Verifica si el próximo cumpleaños ya pasó en el año actual
+                if (proximoCumpleañosEsteAño < fechaActual)
+                {
+                    // Calcula la fecha del próximo cumpleaños en el siguiente año
+                    proximoCumpleañosEsteAño = new DateTime(fechaActual.Year + 1, proximoCumpleaños.FechaNacimiento.Month, proximoCumpleaños.FechaNacimiento.Day);
+                }
+
+                // Calcula los días que faltan para el próximo cumpleaños
+                int diasFaltantes = (proximoCumpleañosEsteAño - fechaActual).Days;
+
+                return diasFaltantes;
+            }
+
+            // Si no se encuentra ningún próximo cumpleaños, retorna 0
+            return 0;
+        }
+
+        public string ObtenerNombreProximoCumpleañeros()
+        {
+            // Obtén el usuario actual
+            var user = db.AspNetUsers.SingleOrDefault(u => u.UserName == User.Identity.Name);
+
+            // Obtiene la fecha actual
+            DateTime fechaActual = DateTime.Today;
+
+            // Consulta la base de datos para obtener el próximo cumpleaños
+            var proximoCumpleaños = db.Estudiantes
+                .Where(e => e.FechaNacimiento.Month >= fechaActual.Month && e.FechaNacimiento.Day >= fechaActual.Day)
+                .OrderBy(e => e.FechaNacimiento)
+                .FirstOrDefault();
+
+            if (proximoCumpleaños != null)
+            {
+                // Calcula la fecha del próximo cumpleaños en el año actual
+                DateTime proximoCumpleañosEsteAño = new DateTime(fechaActual.Year, proximoCumpleaños.FechaNacimiento.Month, proximoCumpleaños.FechaNacimiento.Day);
+
+                // Verifica si el próximo cumpleaños ya pasó en el año actual
+                if (proximoCumpleañosEsteAño < fechaActual)
+                {
+                    // Calcula la fecha del próximo cumpleaños en el siguiente año
+                    proximoCumpleañosEsteAño = new DateTime(fechaActual.Year + 1, proximoCumpleaños.FechaNacimiento.Month, proximoCumpleaños.FechaNacimiento.Day);
+                }
+
+                // Retorna el nombre de la persona que va a cumplir años
+                return proximoCumpleaños.Nombre;
+            }
+
+            // Si no se encuentra ningún próximo cumpleaños, retorna una cadena vacía
+            return string.Empty;
+        }
+
+    
+
+       
 
         // GET: Estudiantes
         public ActionResult Index()
@@ -36,6 +117,20 @@ namespace Proyecto_Ato.Controllers
             }
             return View(estudiantes);
         }
+
+
+        public ActionResult GetEstudianteDetails(int id)
+        {
+            Estudiantes estudiante = db.Estudiantes.Find(id);
+            if (estudiante == null)
+            {
+                return HttpNotFound();
+            }
+
+            return PartialView("_EstudianteDetails", estudiante);
+        }
+
+
 
         // GET: Estudiantes/Create
         public ActionResult Create()
