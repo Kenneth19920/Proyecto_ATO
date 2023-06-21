@@ -34,7 +34,7 @@ using System;
 
     [Required(ErrorMessage = "El campo Monto es obligatorio.")]
     [Display(Name = "Monto")]
-    [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
+    [DisplayFormat(DataFormatString = "{0:N}")]
     [RegularExpression(@"^\d+(\.\d{1,2})?$", ErrorMessage = "El campo Monto debe tener máximo 2 decimales.")]
     public decimal Monto { get; set; }
 

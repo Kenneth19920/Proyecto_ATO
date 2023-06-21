@@ -20,7 +20,6 @@ using System;
         [Required]
         public int IdEstudiante { get; set; }
 
-        [Required]
         public string IdUsuario { get; set; }
 
         [Required(ErrorMessage = "El campo Nombre es obligatorio.")]
