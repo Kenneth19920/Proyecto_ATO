@@ -59,17 +59,6 @@ Tiempo varchar(500)NOT NULL,
 Hora varchar(500)NOT NULL,
 )
 
-
-CREATE TABLE Grupo(
-IdGrupo int primary key IDENTITY(1,1) NOT NULL,
-Descripcion varchar(100) NULL,
-IdHorario int NOT NULL,
-IdEstudiante INT NOT NULL,
-FOREIGN KEY (IdHorario) REFERENCES Grupo(IdHorario),
-FOREIGN KEY (IdEstudiante) REFERENCES Estudiantes(IdEstudiante),
-)
-
-
 CREATE TABLE Estudiantes (
 IdEstudiante int primary key IDENTITY(1,1) NOT NULL,
 IdUsuario NVARCHAR(128) NOT NULL,
@@ -88,4 +77,16 @@ Correo Varchar(250) NOT NULL,
 HistorialMedico varchar(250) NOT NULL,
 FOREIGN KEY (IdUsuario) REFERENCES AspNetUsers(id)
 );
+
+
+CREATE TABLE Grupo(
+IdGrupo int primary key IDENTITY(1,1) NOT NULL,
+Descripcion varchar(100) NULL,
+IdHorario int NOT NULL,
+IdEstudiante INT NOT NULL,
+FOREIGN KEY (IdHorario) REFERENCES Horario(IdHorario),
+FOREIGN KEY (IdEstudiante) REFERENCES Estudiantes(IdEstudiante),
+)
+
+
 
