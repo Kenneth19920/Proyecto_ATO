@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using Proyecto_Ato.Models;
 
@@ -14,6 +15,19 @@ namespace Proyecto_Ato.Controllers
     public class PersonalController : Controller
     {
         private Academia_AtoEntities db = new Academia_AtoEntities();
+
+        public int ObtenerNumeroPersonal()
+        {
+            var user = db.AspNetUsers.SingleOrDefault(u => u.UserName == User.Identity.Name);
+            int count = db.Personal.Count();
+            return count > 0 ? count : 0;
+        }
+        public DateTime ObtenerFechaUltimoR()
+        {
+            var user = db.AspNetUsers.SingleOrDefault(u => u.UserName == User.Identity.Name);
+            DateTime FechaRe = DateTime.Now;
+            return FechaRe;
+        }
 
         // GET: Personal
         public ActionResult Index()

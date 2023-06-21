@@ -7,22 +7,17 @@
 
 <div class="row" style="display: inline-block;">
     <div class="tile_count">
-        <div class="col-md-6 col-sm-4   tile_stats_count">
-            <span class="count_top"><i class="fa fa-user"></i> Total de Gastos</span>
+        <div class="col-md-12 col-sm-6   tile_stats_count">
+            <span class="count_top"><i class="fa fa-user"></i> Total de Personal</span>
 
-            <div class="count">@Html.Action("ObtenerNumeroIngresos", "Ingresos")</div>
+            <div class="count">@Html.Action("ObtenerNumeroPersonal", "")</div>
 
-            @Html.Action("ObtenerFechaUltimoIngreso", "Ingresos") Ultimo Gasto
+            @Html.Action("ObtenerFechaUltimoR", "Personal") <br /> Ultimo Registro
 
 
 
         </div>
 
-        <div class="col-md-6 col-sm-6  tile_stats_count">
-            <span class="count_top"><i class="fa fa-user"></i> Total de Gastos</span>
-            <div class="count green">@Html.Action("ObtenerTotalMontos", "Ingresos")</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i></i>Gastos Netos</span>
-        </div>
     </div>
 </div>
 
@@ -55,7 +50,7 @@
 <div class="col-md-12 col-sm-12 ">
     <div class="x_panel">
         <div class="x_title">
-            <h2>KeyTable example <small>Users</small></h2>
+            <h2>Tabla <small>Personal</small></h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li>
                     <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -78,7 +73,7 @@
                 <div class="col-sm-12">
                     <div class="card-box table-responsive">
                         <p class="text-muted font-13 m-b-30">
-                            KeyTable provides Excel like cell navigation on any table. Events (focus, blur, action etc) can be assigned to individual cells, columns, rows or all cells.
+                           Esta es una tabla del Personal de Escuela de Tae-kwondo Oreamuno
                         </p>
                         <div id="datatable-keytable_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap no-footer">
                             <div class="row">

@@ -17,7 +17,6 @@ using System;
         }
 
         [Key]
-        [Required]
         public int IdEstudiante { get; set; }
 
         [Required]

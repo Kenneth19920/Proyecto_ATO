@@ -31,7 +31,7 @@
                 <div class="item form-group">
                     @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "col-form-label col-md-3 col-sm-3 label-align" })
                     <div class="col-md-6 col-sm-6 ">
-                        @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", style = "margin-bottom: 10px;" } })
+                        @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", style = "margin-bottom: 10px;", placeholder = "Nombre de 2 a 50 letras" } })
                         @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                 <div class="item form-group">
                     @Html.LabelFor(model => model.PrimerApellido, htmlAttributes: new { @class = "col-form-label col-md-3 col-sm-3 label-align" })
                     <div class="col-md-6 col-sm-6 ">
-                        @Html.EditorFor(model => model.PrimerApellido, new { htmlAttributes = new { @class = "form-control", style = "margin-bottom: 10px;" } })
+                        @Html.EditorFor(model => model.PrimerApellido, new { htmlAttributes = new { @class = "form-control", style = "margin-bottom: 10px;", placeholder ="Apellido De 2 a 50 letras" } })
                         @Html.ValidationMessageFor(model => model.PrimerApellido, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                 <div class="item form-group">
                     @Html.LabelFor(model => model.SegundoApellido, htmlAttributes: new { @class = "col-form-label col-md-3 col-sm-3 label-align" })
                     <div class="col-md-6 col-sm-6 ">
-                        @Html.EditorFor(model => model.SegundoApellido, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.SegundoApellido, new { htmlAttributes = new { @class = "form-control", placeholder = "Apellido De 2 a 50 letras" } })
                         @Html.ValidationMessageFor(model => model.SegundoApellido, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                 <div class="item form-group">
                     @Html.LabelFor(model => model.Cedula, htmlAttributes: new { @class = "col-form-label col-md-3 col-sm-3 label-align" })
                     <div class="col-md-6 col-sm-6 ">
-                        @Html.EditorFor(model => model.Cedula, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Cedula, new { htmlAttributes = new { @class = "form-control", placeholder = "Cédula de 9 a 15 Digitos" } })
                         @Html.ValidationMessageFor(model => model.Cedula, "", new { @class = "text-danger" })
                     </div>
                 </div>

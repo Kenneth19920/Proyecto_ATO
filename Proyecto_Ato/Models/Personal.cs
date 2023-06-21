@@ -14,21 +14,35 @@ namespace Proyecto_Ato.Models
 
 using System;
     using System.Collections.Generic;
-    
-public partial class Personal
+    using System.ComponentModel.DataAnnotations;
+
+    public partial class Personal
 {
+        [Key]
+        [Required]
+        public int IdPersonal { get; set; }
 
-    public int IdPersonal { get; set; }
+        
+        public string IdUsuario { get; set; }
 
-    public string IdUsuario { get; set; }
+        [Required(ErrorMessage = "El campo Nombre es obligatorio.")]
+        [Display(Name = "Nombre")]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "El campo Nombre debe tener entre 2 y 50 caracteres.")]
+        public string Nombre { get; set; }
 
-    public string Nombre { get; set; }
+        [Required(ErrorMessage = "El campo Primer Apellido es obligatorio.")]
+        [Display(Name = "Primer Apellido")]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "El campo Primer Apellido debe tener entre 2 y 50 caracteres.")]
+        public string PrimerApellido { get; set; }
 
-    public string PrimerApellido { get; set; }
+        [Required(ErrorMessage = "El campo Segundo Apellido es obligatorio.")]
+        [Display(Name = "Segundo Apellido")]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "El campo Segundo Apellido debe tener entre 2 y 50 caracteres.")]
+        public string SegundoApellido { get; set; }
 
-    public string SegundoApellido { get; set; }
-
-    public int Cedula { get; set; }
+        [Required(ErrorMessage = "El campo Cédula es obligatorio.")]
+        [Display(Name = "Cédula")]
+        public int Cedula { get; set; }
 
 
 
