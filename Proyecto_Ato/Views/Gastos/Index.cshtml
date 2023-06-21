@@ -4,20 +4,31 @@
     ViewBag.Title = "Index";
 }
 
-<div class="row" style="display: inline-block;">
+<div class="row" style="display: inline-block; white-space: nowrap;">
     <div class="tile_count">
-        <div class="row">
-            <div class="col-md-6 col-sm-4 tile_stats_count">
-                <span class="count_top"><i class="fa fa-user"></i> Total de Gastos</span>
-                <div class="count">@Html.Action("ObtenerNumeroGastos", "Gastos")</div>
-                @Html.Action("ObtenerFechaUltimoGasto", "Gastos") Último Gasto
-            </div>
 
-            <div class="col-md-6 col-sm-6 tile_stats_count">
-                <span class="count_top"><i class="fa fa-user"></i> Total de Gastos</span>
-                <div class="count red">@Html.Action("ObtenerTotalMontoGasto", "Gastos")</div>
-                <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i></i>Gastos Netos</span>
-            </div>
+        <div class="col-md-3 col-sm-4 tile_stats_count">
+            <span class="count_top"><i class="fa fa-university"></i> Total de Gastos</span>
+            <div class="count">@Html.Action("ObtenerNumeroGastos", "Gastos")</div>
+            @Html.Action("ObtenerFechaUltimoGasto", "Gastos") Último Gasto
+        </div>
+
+        <div class="col-md-3 col-sm-4 tile_stats_count">
+            <span class="count_top"><i class="fa fa-money"></i> Total de Gastos</span>
+            <div class="count red">@Html.Action("ObtenerTotalMontoGasto", "Gastos")</div>
+            <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i></i>Gastos Netos</span>
+        </div>
+
+        <div class="col-md-3 col-sm-4 tile_stats_count">
+            <span class="count_top"><i class="fa fa fa-calendar"></i> Total de Gastos </span>
+            <div class="count red">@Html.Action("ObtenerTotalMontoGastosPorMes", "Gastos")</div>
+            <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i></i>Del Mes</span>
+        </div>
+
+        <div class="col-md-3 col-sm-4 tile_stats_count">
+            <span class="count_top"><i class="fa fa-tags"></i> Categoría con más gastos </span>
+            <div class="count top">@Html.Action("ObtenerCategoriaConMasGastosUltimoMes", "Gastos")</div>
+            <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i></i>Del Mes</span>
         </div>
     </div>
 </div>

@@ -22,6 +22,7 @@ namespace Proyecto_Ato.Controllers
             int count = db.Estudiantes.Count();
             return count > 0 ? count : 0;
         }
+
         public int ObtenerDiasParaProximoCumpleaños()
         {
             // Obtén el usuario actual
