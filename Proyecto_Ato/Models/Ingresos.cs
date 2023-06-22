@@ -14,20 +14,31 @@ namespace Proyecto_Ato.Models
 
 using System;
     using System.Collections.Generic;
-    
-public partial class Ingresos
-{
+    using System.ComponentModel.DataAnnotations;
 
+    public partial class Ingresos
+{
+    [Key]
+    [Required]
     public int IdIngreso { get; set; }
 
     public string IdUsuario { get; set; }
 
     public int IdCategoria { get; set; }
-
+    [Required(ErrorMessage = "El campo Nombre es Descripción.")]
+    [Display(Name = "Descripción")]
+    [StringLength(150, MinimumLength = 2, ErrorMessage = "El campo Nombre debe tener entre 2 y 150 caracteres.")]
     public string Descripcion { get; set; }
 
+    [Required(ErrorMessage = "El campo Monto es obligatorio.")]
+    [Display(Name = "Monto")]
+    [DisplayFormat(DataFormatString = "{0:N}")]
+    [RegularExpression(@"^\d+(\.\d{1,2})?$", ErrorMessage = "El campo Monto debe tener máximo 2 decimales.")]
     public decimal Monto { get; set; }
 
+    [Required(ErrorMessage = "El campo Fecha es obligatorio.")]
+    [Display(Name = "Fecha del Gastos")]
+    [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
     public System.DateTime FechaIngreso { get; set; }
 
 
