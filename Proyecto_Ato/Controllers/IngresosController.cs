@@ -40,6 +40,59 @@ namespace Proyecto_Ato.Controllers
             return string.Format("{0:N}", sumaMontos);
         }
 
+        public string ObtenerTotalGastosPorMes()
+        {
+            var user = db.AspNetUsers.SingleOrDefault(u => u.UserName == User.Identity.Name);
+
+            // Obtener la fecha actual
+            DateTime fechaActual = DateTime.Now;
+
+            // Calcular el primer día del mes actual
+            DateTime primerDiaMesActual = new DateTime(fechaActual.Year, fechaActual.Month, 1);
+
+            // Calcular el primer día del siguiente mes
+            DateTime primerDiaMesSiguiente = primerDiaMesActual.AddMonths(1);
+
+            // Filtrar los gastos por el mes actual y calcular la suma de los montos
+            decimal sumaMontos = db.Ingresos
+                .Where(g => g.FechaIngreso >= primerDiaMesActual && g.FechaIngreso < primerDiaMesSiguiente)
+                .Select(g => g.Monto)
+                .DefaultIfEmpty(0)
+                .Sum();
+
+            // Formatear el resultado y devolverlo como cadena
+            return string.Format("{0:N}", sumaMontos);
+        }
+
+        public string ObtenerCategoriaIngresosUltimoMes()
+        {
+            var user = db.AspNetUsers.SingleOrDefault(u => u.UserName == User.Identity.Name);
+
+            // Obtener la fecha actual y el primer día del mes actual
+            DateTime fechaActual = DateTime.Now;
+            DateTime primerDiaMesActual = new DateTime(fechaActual.Year, fechaActual.Month, 1);
+
+            // Calcular el primer día del siguiente mes
+            DateTime primerDiaMesSiguiente = primerDiaMesActual.AddMonths(1);
+
+            // Realizar la consulta para obtener la categoría con la mayor suma de montos
+            var categoriaMasIngresos = db.Ingresos
+                .Where(g => g.FechaIngreso >= primerDiaMesActual && g.FechaIngreso < primerDiaMesSiguiente)
+                .GroupBy(g => g.CategoriaIngresos.Descripcion)
+                .Select(grp => new { CategoriaIngresos= grp.Key, SumaMontos = grp.Sum(g => g.Monto) })
+                .OrderByDescending(grp => grp.SumaMontos)
+                .FirstOrDefault();
+
+            if (categoriaMasIngresos != null)
+            {
+                return categoriaMasIngresos.CategoriaIngresos;
+            }
+            else
+            {
+                return "No hay gastos en el último mes.";
+            }
+        }
+
 
         // GET: Ingresos
         public ActionResult Index()

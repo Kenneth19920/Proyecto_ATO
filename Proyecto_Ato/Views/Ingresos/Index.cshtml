@@ -5,24 +5,34 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="row" style="display: inline-block;">
+<div class="row" style="display: inline-block; white-space: nowrap;;">
     <div class="tile_count">
-        <div class="col-md-6 col-sm-4   tile_stats_count">
-            <span class="count_top"><i class="fa fa-user"></i> Total de Ingresos</span>
+        <div class="col-md-3 col-sm-4   tile_stats_count">
+            <span class="count_top"><i class="fa fa-line-chart"></i> Total de Ingresos</span>
 
             <div class="count">@Html.Action("ObtenerNumeroIngresos", "Ingresos")</div>
 
             @Html.Action("ObtenerFechaUltimoIngreso", "Ingresos") Ultimo Ingreso
-
-
-
         </div>
 
-        <div class="col-md-6 col-sm-6  tile_stats_count">
-            <span class="count_top"><i class="fa fa-user"></i> Total de Ingresos</span>
+        <div class="col-md-3 col-sm-6  tile_stats_count">
+            <span class="count_top"><i class="fa fa-money"></i> Total de Ingresos</span>
             <div class="count green">@Html.Action("ObtenerTotalMontos", "Ingresos")</div>
             <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i></i>Ingresos Netos</span>
         </div>
+
+        <div class="col-md-3 col-sm-4 tile_stats_count">
+            <span class="count_top"><i class="fa fa fa-calendar"></i> Total de Ingresos </span>
+            <div class="count green">@Html.Action("ObtenerTotalGastosPorMes", "Ingresos")</div>
+            <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i></i>Del Mes</span>
+        </div>
+
+        <div class="col-md-3 col-sm-4 tile_stats_count">
+            <span class="count_top"><i class="fa fa-tags"></i> Categoría con más Ingresos </span>
+            <div class="count top">@Html.Action("ObtenerCategoriaIngresosUltimoMes", "Ingresos")</div>
+            <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i></i>Del Mes</span>
+        </div>
+
     </div>
 </div>
 

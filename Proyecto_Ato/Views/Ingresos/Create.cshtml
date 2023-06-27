@@ -45,7 +45,7 @@
                     @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "col-form-label col-md-3 col-sm-3 label-align" })
 
                     <div class="col-md-6 col-sm-6 ">
-                        @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control", style = "margin-bottom: 10px;" } })
+                        @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control", style = "margin-bottom: 10px;", placeholder = "Agregar una breve Descripción" } })
                         @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -53,7 +53,7 @@
 
                     @Html.LabelFor(model => model.Monto, htmlAttributes: new { @class = "col-form-label col-md-3 col-sm-3 label-align" })
                     <div class="col-md-6 col-sm-6 ">
-                        @Html.EditorFor(model => model.Monto, new { htmlAttributes = new { @class = "form-control", type = "number", step = "0.01", style = "margin-bottom: 10px;" } })
+                        @Html.EditorFor(model => model.Monto, new { htmlAttributes = new { @class = "form-control", type = "number", step = "0.01", style = "margin-bottom: 10px;", placeholder = "Digite el monto" } })
                         @Html.ValidationMessageFor(model => model.Monto, "", new { @class = "text-danger" })
 
                     </div>
