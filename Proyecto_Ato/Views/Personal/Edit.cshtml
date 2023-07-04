@@ -1,10 +1,10 @@
 ﻿@model Proyecto_Ato.Models.Personal
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Editar";
 }
 
-<h2>Edit</h2>
+<h2>Editar</h2>
 
 
 @using (Html.BeginForm())
@@ -14,8 +14,8 @@
     <div class="x_panel">
         <div class="x_title">
             <h2>
-                Agregar Personal
-                <small>A la academia</small>
+                 Personal
+                <small>De la academia</small>
             </h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li>
@@ -30,11 +30,9 @@
             <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
 
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-<<<<<<< HEAD
-                @Html.HiddenFor(model=> model.IdPersonal)
-=======
-             
->>>>>>> 8f253dc9d06ca423daee3642940f7829f15462d5
+           
+                @Html.HiddenFor(model => model.IdPersonal)
+
 
                 <div class="item form-group">
                     @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "col-form-label col-md-3 col-sm-3 label-align" })
@@ -73,8 +71,7 @@
                 <div class="item form-group">
                     <div class="col-md-6 col-sm-6 offset-md-3">
                         <a href="@Url.Action("Index")" class="btn btn-primary">Regresar</a>
-                        <button class="btn btn-primary" type="reset">Reset</button>
-                        <button type="submit" class="btn btn-success">Crear</button>
+                        <button type="submit" class="btn btn-success">Editar</button>
 
                     </div>
                 </div>

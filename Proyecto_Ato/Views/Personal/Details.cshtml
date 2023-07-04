@@ -1,10 +1,10 @@
 ﻿@model Proyecto_Ato.Models.Personal
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalle";
 }
 
-<h2>Details</h2>
+<h2>Detalle</h2>
 
 <div>
     <h4>Personal</h4>
@@ -53,6 +53,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdPersonal }) |
-    @Html.ActionLink("Back to List", "Index")
+    <a href="@Url.Action("Edit", new { id = Model.IdPersonal })" class="btn btn-primary"><i class="fa fa-pencil"></i> Editar </a>
+    <a href="@Url.Action("Index")" class="btn btn-primary">Regresar</a>
 </p>

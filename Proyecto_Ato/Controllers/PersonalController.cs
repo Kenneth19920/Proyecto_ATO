@@ -113,6 +113,8 @@ namespace Proyecto_Ato.Controllers
             return View(personal);
         }
 
+        
+
         // GET: Personal/Delete/5
         public ActionResult Delete(int? id)
         {
